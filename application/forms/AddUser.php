@@ -13,18 +13,41 @@ Class Form_AddUser extends Zend_Form {
 		$username->setRequired(true);
 		$username->setLabel('Username');
 		$username->addFilter('StripTags');
-		$username->addValidator('Digits');
+		//$username->addValidator('Digits');
 
 		$contact = new Zend_Form_Element_Text('contact');
 		$contact->setRequired(true);
 		$contact->setLabel('Contact');
-		$contact->addFilter('StripTags');
-		$contact->addValidator('Digits');
+		//$contact->addFilter('StripTags');
+		//$contact->addValidator('Digits');
 
+		$gender = new Zend_Form_Element_Radio('gender');
+		$gender->addMultiOption('male', 'Male');
+		$gender->addMultiOption('female', 'Female');
+		$gender->setRequired(true);
+		$gender->setLabel('Gender');
+		
+		$cities = new Zend_Form_Element_MultiCheckbox("cities");
+		$cities->addMultiOptions(array(
+						"mumbai" => "Mumbai",
+						"pune" => "Pune"
+					));
+		$cities->setLabel("Cities");
+		//$cities->setValue('mumbai');  // To checked by default.
+		
+		$countries = new Zend_Form_Element_Select("countries");
+		$countries->addMultiOptions(array(
+			"" => "Select",
+			"india" => "india",
+			"russia" => "Russia"
+		));
+		$countries->setLabel("Countries");
+		//$countries->setValue('india'); // To show selected by default.
 
-		$submit = new Zend_Form_Element_Submit('submit');
+		$submit = new Zend_Form_Element_Submit("submit");
 
-		$this->addElements(array($username, $contact, $submit));
+		$this->addElements(array($username, $gender, $contact, $cities, $countries, $submit));
+		
 	}
 			
 

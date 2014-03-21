@@ -11,23 +11,18 @@ class User_IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-       $this->view->test = "hi ganesh";
-			$this->view->form = new Form_AddUser;
+		$this->view->form = new Form_AddUser;
     }
 
     public function addAction() {
-        
         $this->view->form = new Form_AddUser;
-				$m = $this->getRequest()->getPost();
-				print_r($m);				
-
-				if ($this->getRequest()->isPost()) {
-				            
-					if ($this->view->form->isValid($this->getRequest()->getPost())) {
-					//		print_r($this->view->form->getValues());
-							
-						}
-				} 
+		$m = $this->getRequest()->getPost();//$this->getRequest()->getPost();
+		print_r($m);				
+			if ($this->getRequest()->isPost()) {
+				if ($this->view->form->isValid($this->getRequest()->getPost())) {
+					print_r($this->view->form->getValues());
+				}
+			} 
     }
     
     public function updateAction() {
